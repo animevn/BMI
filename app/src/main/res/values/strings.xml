@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BMI Calculator</string>
 
     <string name="weightLabel">Your weight (kg):</string>
@@ -16,6 +16,6 @@
     <string name="overweight">Overweight</string>
     <string name="fat">Very fat</string>
     <string name="too_fat">Dangerously fat</string>
-    <string name="invalid">Invalid value</string>
+    <string name="invalid" tools:keep="@string/invalid">Invalid value</string>
 
 </resources>

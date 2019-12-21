@@ -83,20 +83,15 @@ public class MainActivity extends AppCompatActivity {
     private String bmiCat(){
         if (bmi < 15){
             return getString(R.string.too_low);
-        }
-        else if (bmi < 18){
+        }else if (bmi < 18){
             return getString(R.string.low);
-        }
-        else if (bmi < 25){
+        }else if (bmi < 25){
             return getString(R.string.ok);
-        }
-        else if (bmi < 30){
+        }else if (bmi < 30){
             return getString(R.string.overweight);
-        }
-        else if (bmi < 35){
+        }else if (bmi < 35){
             return getString(R.string.fat);
-        }
-        else {
+        }else {
             return getString(R.string.too_fat);
         }
     }
