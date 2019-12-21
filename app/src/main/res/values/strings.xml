@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+
+    <string name="weightLabel">Your weight (kg):</string>
+    <string name="weightPlaceholder">weight</string>
+    <string name="heightLabel">Your height (cm):</string>
+    <string name="heightPlaceholder">height</string>
+    <string name="bmiLabel">Your BMI:</string>
+    <string name="bmiPlaceholder">Your BMI here</string>
+    <string name="resultPlaceHolder">Your result here</string>
+    <string name="bnCal">Calculate</string>
+
+    <string name="too_low">Dangerously underweight</string>
+    <string name="low">Underweight</string>
+    <string name="ok">Good</string>
+    <string name="overweight">Overweight</string>
+    <string name="fat">Very fat</string>
+    <string name="too_fat">Dangerously fat</string>
+    <string name="invalid">Invalid value</string>
+
+</resources>
