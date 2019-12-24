@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private float weight;
     private float height;
     private float bmi;
-
     private static final String BMI = "bmi";
     private static final String WEIGHT = "weight";
     private static final String HEIGHT = "height";
