@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+//good
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.textView)
