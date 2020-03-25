@@ -1,4 +1,4 @@
-package com.haanhgs.app.savestatehidekeyboarddemo;
+package com.haanhgs.app.bmi;
 
 import android.content.Context;
 

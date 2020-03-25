@@ -1,4 +1,4 @@
-package com.haanhgs.app.savestatehidekeyboarddemo;
+package com.haanhgs.app.bmi.view;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.haanhgs.app.bmi.R;
+
 import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
