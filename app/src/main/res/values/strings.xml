@@ -10,12 +10,6 @@
     <string name="resultPlaceHolder">Your result here</string>
     <string name="bnCal">Calculate</string>
 
-    <string name="too_low">Dangerously underweight</string>
-    <string name="low">Underweight</string>
-    <string name="ok">Good</string>
-    <string name="overweight">Overweight</string>
-    <string name="fat">Very fat</string>
-    <string name="too_fat">Dangerously fat</string>
     <string name="invalid" tools:keep="@string/invalid">Invalid value</string>
 
 </resources>

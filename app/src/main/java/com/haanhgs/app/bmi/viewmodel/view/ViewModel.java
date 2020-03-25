@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 public class ViewModel extends AndroidViewModel {
 
-    private MutableLiveData<Bmi> liveData = new MutableLiveData<>();
+    private final MutableLiveData<Bmi> liveData = new MutableLiveData<>();
 
     public ViewModel(@NonNull Application application) {
         super(application);
