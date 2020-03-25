@@ -6,17 +6,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.haanhgs.app.bmi.R;
-
+import com.haanhgs.app.bmi.viewmodel.view.ViewModel;
 import java.util.Locale;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-//good
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.textView)
@@ -36,67 +34,22 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.bnCalculate)
     Button bnCalculate;
 
-    private float weight;
-    private float height;
-    private float bmi;
-    private static final String BMI = "bmi";
-    private static final String WEIGHT = "weight";
-    private static final String HEIGHT = "height";
-    private static final String MESSAGE = "message";
-
-    private void loadSavedInstance(Bundle bundle){
-        if (bundle != null){
-            weight = bundle.getFloat(WEIGHT);
-            height = bundle.getFloat(HEIGHT);
-            bmi = bundle.getFloat(BMI);
-            String message = bundle.getString(MESSAGE);
-
-            if (weight > 0) etWeight.setText(String.format("%s", weight));
-            if (height > 0) etHeight.setText(String.format("%s", height));
-            if (bmi > 0) tvBMI.setText(String.format(Locale.getDefault(), "%.1f", bmi));
-            if (message != null) tvResult.setText(message);
-        }
-    }
+    private ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        loadSavedInstance(savedInstanceState);
-    }
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString(MESSAGE, tvResult.getText().toString());
-        outState.putFloat(WEIGHT, weight);
-        outState.putFloat(HEIGHT, height);
-        outState.putFloat(BMI, bmi);
-    }
-
-    private boolean isFloat(String string){
-        try{
-            return Float.parseFloat(string) > 0;
-        }catch (NumberFormatException e){
-            return false;
-        }
-    }
-
-    private String bmiCat(){
-        if (bmi < 15){
-            return getString(R.string.too_low);
-        }else if (bmi < 18){
-            return getString(R.string.low);
-        }else if (bmi < 25){
-            return getString(R.string.ok);
-        }else if (bmi < 30){
-            return getString(R.string.overweight);
-        }else if (bmi < 35){
-            return getString(R.string.fat);
-        }else {
-            return getString(R.string.too_fat);
-        }
+        viewModel = new ViewModelProvider(this).get(ViewModel.class);
+        viewModel.getLiveData().observe(this, bmi -> {
+            if (bmi.getBmi() == null){
+                tvBMI.setText("");
+            }else {
+                tvBMI.setText(String.format(Locale.getDefault(), "%.2f", bmi.getBmi()));
+            }
+            tvResult.setText(bmi.getBmiCategory());
+        });
     }
 
     private void hideKeboard(){
@@ -109,19 +62,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void calculateBMI(){
-        if (isFloat(etHeight.getText().toString()) && isFloat(etWeight.getText().toString())){
-            hideKeboard();
-            weight = Float.parseFloat(etWeight.getText().toString());
-            height = Float.parseFloat(etHeight.getText().toString());
-            bmi = weight*10000/(height * height);
-            tvBMI.setText(String.format(Locale.getDefault(), "%.1f", bmi));
-            tvResult.setText(bmiCat());
-        }
-    }
-
     @OnClick(R.id.bnCalculate)
     public void onViewClicked() {
-        calculateBMI();
+        hideKeboard();
+        String weight = etWeight.getText().toString();
+        String height = etHeight.getText().toString();
+        viewModel.calculateBmi(weight, height);
     }
 }
